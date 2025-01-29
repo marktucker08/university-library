@@ -39,7 +39,18 @@ const isSignIn = type === "SIGN_IN";
         resolver: zodResolver(schema),
         defaultValues: defaultValues as DefaultValues<T>,
       });
-    const handleSubmit: SubmitHandler<T> = async (data) => {};
+    const handleSubmit: SubmitHandler<T> = async (data) => {
+        const result = await onSubmit(data);
+
+        if(result.success) {
+            toast({
+                title: "Success",
+                description: isSignIn
+                    ? "You have successfully signed in."
+                    : "You have successfully signed up",
+            });
+        }
+    };
 
     return (
         <div className="flex flex-col gap-4">
