@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { bookSchema } from "@/lib/validations";
 import { Textarea } from "@/components/ui/textarea";
+import ColorPicker from "../ColorPicker";
 
 interface Props extends Partial<Book> {
     type?: "create" | "update";
@@ -42,7 +43,9 @@ const router = useRouter();
         }
       });
 
-    const onSubmit = async (values: z.infer<typeof bookSchema>) => {};
+    const onSubmit = async (values: z.infer<typeof bookSchema>) => {
+        console.log(values);
+    };
 
     return (
         <Form {...form}>
@@ -176,7 +179,7 @@ const router = useRouter();
                         Primary Color
                     </FormLabel>
                     <FormControl>
-                            {/* Add ColorPicker component here */}
+                            <ColorPicker onPickerChange={field.onChange} value={field.value} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>
