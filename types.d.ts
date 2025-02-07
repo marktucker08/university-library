@@ -32,4 +32,5 @@ interface BookParams {
     videoUrl: string;
     summary: string;
     totalCopies: number;
+    availableCopies: number;
 }

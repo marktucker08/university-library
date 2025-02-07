@@ -19,6 +19,8 @@ import { useRouter } from "next/navigation";
 import { bookSchema } from "@/lib/validations";
 import { Textarea } from "@/components/ui/textarea";
 import ColorPicker from "../ColorPicker";
+import { createBook } from "@/lib/admin/actions/book";
+import { toast } from "@/hooks/use-toast";
 
 interface Props extends Partial<Book> {
     type?: "create" | "update";
@@ -44,7 +46,24 @@ const router = useRouter();
       });
 
     const onSubmit = async (values: z.infer<typeof bookSchema>) => {
-        console.log(values);
+        const result = await createBook(values);
+
+        if (result.success) {
+            toast( {
+                title: "Success",
+                description: "Book added to library",
+            });
+
+            router.push(`/admin/books/${result.data.id}`);
+        } else {
+            toast({
+                title: "Error",
+                description: result.error,
+                variant: "destructive",
+            });
+        }
+
+        
     };
 
     return (

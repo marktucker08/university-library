@@ -15,6 +15,13 @@
       "when": 1738020622713,
       "tag": "0001_far_tana_nile",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1738952751788,
+      "tag": "0002_soft_marvex",
+      "breakpoints": true
     }
   ]
 }
