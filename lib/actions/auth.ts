@@ -65,7 +65,7 @@ export const signUp = async (params: AuthCredentials) => {
             universityCard,
         });
 
-        // await s
+        await signInWithCredentials({ email, password });
 
         return { success: true };
     } catch (error) {

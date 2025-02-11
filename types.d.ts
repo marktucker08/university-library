@@ -29,8 +29,8 @@ interface BookParams {
     rating: number;
     coverUrl: string;
     coverColor: string;
+    description: string;
+    totalCopies: number;
     videoUrl: string;
     summary: string;
-    totalCopies: number;
-    availableCopies: number;
 }
