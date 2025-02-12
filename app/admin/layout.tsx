@@ -14,30 +14,30 @@ const Layout = async ({children}: { children: ReactNode }) => {
 
     if (!session?.user?.id) redirect("/sign-in");
 
-    // console.log('session.user.id:', session.user.id);
+    console.log('session.user.id:', session.user.id);
 
-    // const isAdmin = await db
-    //     .select({ isAdmin: users.role })
-    //     .from(users)
-    //     .where(eq(users.id, session.user.id))
-    //     .limit(1)
-    //     .then((res) => res[0]?.isAdmin === "ADMIN");
+    const isAdmin = await db
+        .select({ isAdmin: users.role })
+        .from(users)
+        .where(eq(users.id, session.user.id))
+        .limit(1)
+        .then((res) => res[0]?.isAdmin === "ADMIN");
 
-    try {
-        const result = await db
-            .select({ isAdmin: users.role })
-            .from(users)
-            .where(eq(users.fullName, "Mark Tucker"))
-            .limit(1);
+    // try {
+    //     const result = await db
+    //         .select({ isAdmin: users.role })
+    //         .from(users)
+    //         .where(eq(users.id, session.user.id))   
+    //         .limit(1);
     
-        const isAdmin = result[0]?.isAdmin === "ADMIN";
-        console.log('isAdmin:', isAdmin);
-    } catch (error) {
-        console.error('Error fetching admin status:', error);
-        const isAdmin = false;
-    }
+    //     const isAdmin = result[0]?.isAdmin === "ADMIN";
+    //     console.log('isAdmin:', isAdmin);
+    // } catch (error) {
+    //     console.error('Error fetching admin status:', error);
+    //     const isAdmin = false;
+    // }
 
-    // if (!isAdmin) redirect("/");
+    if (!isAdmin) redirect("/");
 
     return (
         <main className="flex min-h-screen w-full flex-row">
